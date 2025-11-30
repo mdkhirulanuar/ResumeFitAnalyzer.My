@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Fit Analyzer - Unlock Your Interview</title>
+  <link rel="stylesheet" href="./landing.css" />
+  <!-- Open Graph meta tags for social sharing -->
+  <meta property="og:title" content="Resume Fit Analyzer - Unlock Your Interview" />
+  <meta property="og:description" content="AI-driven resume analysis and professional enhancement to boost your interview chances." />
+  <meta property="og:image" content="./app/assets/icon-512.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="" />
+</head>
+<body>
+  <header class="lp-header">
+    <nav class="lp-nav">
+      <div class="logo">
+        <img src="./app/assets/icon-512.png" alt="Resume Fit Analyzer Logo" />
+        <span>Resume Fit Analyzer</span>
+      </div>
+      <a href="./app/index.html" class="btn-nav">Launch App</a>
+    </nav>
+    <div class="hero">
+      <h1>Launch Your Career with ATS‑Friendly Applications</h1>
+      <p>Our AI-driven tool analyzes your resume and job description, generates an ATS‑friendly resume and cover letter, and increases your interview chances.</p>
+      <div class="cta-buttons">
+        <a href="./app/index.html" class="btn primary">Get Started Free</a>
+        <a href="#pricing" class="btn secondary">View Pricing</a>
+      </div>
+    </div>
+  </header>
+  <main class="lp-main">
+    <section class="features">
+      <h2>Key Features</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <h3>Evidence‑Based Matching</h3>
+          <p>Our algorithm compares your resume to any job description, line by line, revealing exactly how well you meet each requirement.</p>
+        </div>
+        <div class="feature-item">
+          <h3>ATS‑Friendly Resume</h3>
+          <p>Generate a new resume that follows recruiter‑friendly formatting and adds content to close critical gaps.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Professional Cover Letters</h3>
+          <p>Receive a tailored cover letter that speaks directly to the job, available when your alignment score is high.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Secure Payments & Edits</h3>
+          <p>Upgrade to premium using trusted payment methods and edit your generated documents until you’re satisfied.</p>
+        </div>
+      </div>
+    </section>
+    <section class="testimonials">
+      <h2>What Our Users Say</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <p>“I landed my first interview within a week of using Resume Fit Analyzer. The enhanced resume was a game changer!”</p>
+          <span>- Sarah, Engineering Graduate</span>
+        </div>
+        <div class="testimonial">
+          <p>“This system made it easy to spot gaps in my resume and automatically added the skills I needed. Absolutely worth it.”</p>
+          <span>- Ahmad, Accounting Graduate</span>
+        </div>
+        <div class="testimonial">
+          <p>“The generated cover letter was so professional and matched the job perfectly. Paying through PayPal was a breeze.”</p>
+          <span>- Mei, Marketing Graduate</span>
+        </div>
+      </div>
+    </section>
+    <section id="pricing" class="pricing">
+      <h2>Plans &amp; Pricing</h2>
+      <div class="pricing-grid">
+        <div class="plan plan-free">
+          <h3>Free</h3>
+          <p><strong>0 MYR</strong> / forever</p>
+          <ul>
+            <li>Gap analysis between resume & JD</li>
+            <li>Match score & candidate classification</li>
+            <li>Lists of strengths & critical gaps</li>
+          </ul>
+          <a href="./app/index.html" class="btn primary">Try for Free</a>
+        </div>
+        <div class="plan plan-premium">
+          <h3>Premium</h3>
+          <p><strong>RM39</strong> / one‑time</p>
+          <ul>
+            <li>ATS‑friendly enhanced resume (PDF & Word)</li>
+            <li>Tailored cover letter</li>
+            <li>Unlimited edits until you're satisfied</li>
+            <li>Pay via credit/debit card or PayPal</li>
+          </ul>
+          <a href="./app/index.html#premiumSection" class="btn secondary">Upgrade Now</a>
+        </div>
+      </div>
+      <p class="promo-note">Launch promo: 30% off for the first 100 customers!</p>
+    </section>
+    <section class="faq">
+      <h2>FAQ</h2>
+      <details>
+        <summary>What is Resume Fit Analyzer?</summary>
+        <p>It’s an AI‑powered app that evaluates how well your resume matches a job description, recommends ATS‑friendly enhancements and generates professional cover letters.</p>
+      </details>
+      <details>
+        <summary>Is my data secure?</summary>
+        <p>Yes. All analysis happens locally on your device (PWA) and no personal data is sent to external servers.</p>
+      </details>
+      <details>
+        <summary>How do I make a payment?</summary>
+        <p>You can choose to pay via debit/credit card or PayPal during the upgrade process. Once payment is confirmed, premium features will unlock automatically.</p>
+      </details>
+    </section>
+  </main>
+  <footer class="lp-footer">
+    <p>&copy; 2025 Resume Fit Analyzer. All rights reserved.</p>
+  </footer>
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        // Only scroll if target exists on page
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

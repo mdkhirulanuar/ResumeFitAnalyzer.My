@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Fit Analyzer</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#2c3e50" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-logo">R</div>
+      <div>
+        <h1>Resume Fit Analyzer</h1>
+        <p class="subtitle">Evidence-based evaluation of resume vs job description</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <section class="card">
+      <h2>1. Input Resume &amp; Job Description</h2>
+
+      <div class="form-group">
+        <label for="resumeFile">Upload Resume (PDF, DOC, DOCX or TXT)</label>
+        <input type="file" id="resumeFile" accept=".txt,.pdf,.doc,.docx" />
+        <p class="helper">
+          You can upload a PDF or Word file directly – the app will automatically extract the text. The paste field is available as a fallback option.
+        </p>
+      </div>
+
+      <!-- Optional: Hidden resume text area for fallback. Users no longer need to paste resume text -->
+      <div class="form-group" style="display:none;">
+        <label for="resumeText">Or paste resume text here</label>
+        <textarea id="resumeText" rows="8"
+          placeholder="Paste your full resume text here..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="jobDescription">Job Description from job posting</label>
+        <textarea id="jobDescription" rows="8"
+          placeholder="Paste the full job description here, including bullet points or responsibilities list..."></textarea>
+      </div>
+
+      <button id="analyzeBtn" class="btn primary">Analyze Alignment</button>
+      <p id="statusMessage" class="status-message"></p>
+    </section>
+
+    <section id="resultsSection" class="card hidden">
+      <h2>2. Itemized Gap Analysis (Strict Evidence-Based)</h2>
+
+      <div class="overall-summary">
+        <div class="overall-score">
+          <span id="overallScore">0%</span>
+          <small>Overall Alignment Score</small>
+        </div>
+        <div class="overall-text">
+          <p>
+            <strong>Candidate Classification:</strong>
+            <span id="overallClassification">–</span>
+          </p>
+          <p id="overallExplanation" class="muted"></p>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="gap-table">
+          <thead>
+            <tr>
+              <th>Job Responsibility / Requirement</th>
+              <th>Status</th>
+              <th>Match %</th>
+              <th>Strict Justification (Resume Evidence)</th>
+            </tr>
+          </thead>
+          <tbody id="gapTableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="summary-columns">
+        <div>
+          <h3>Key Strengths (Verified)</h3>
+          <p class="muted">Requirements where the candidate scored 100%.</p>
+          <ul id="strengthsList"></ul>
+        </div>
+        <div>
+          <h3>Critical Gaps (Verified)</h3>
+          <p class="muted">Requirements where the candidate scored 0–20%.</p>
+          <ul id="gapsList"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Premium tools: ask user to upgrade, then generate ATS‑friendly resume and cover letter after payment -->
+    <section id="premiumSection" class="card hidden">
+      <h2>3. Premium Tools</h2>
+      <p class="muted">
+        Unlock an ATS‑friendly enhanced resume and a tailored cover letter when you upgrade.
+      </p>
+
+      <!-- Sales pitch: hidden after user expresses interest -->
+      <div id="premiumPitch">
+        <p>Would you like to generate an ATS‑friendly resume and cover letter?</p>
+        <button id="interestBtn" class="btn secondary">Yes, I'm Interested</button>
+      </div>
+
+      <!-- Payment prompt (simulated) -->
+      <div id="paymentSection" class="payment-section hidden">
+        <h3>Payment Confirmation</h3>
+        <p class="muted">
+          This feature requires a one‑time payment. Enter your receipt/reference number to unlock the download functions.
+        </p>
+        <div class="form-inline">
+          <input type="text" id="receiptInput" placeholder="Example: TXN-123456" />
+          <button id="confirmPaymentBtn" class="btn primary">Confirm Payment &amp; Unlock</button>
+        </div>
+        <p id="paymentMessage" class="status-message"></p>
+      </div>
+
+      <!-- Premium content (hidden until payment confirmed) -->
+      <div id="premiumTools" class="hidden">
+        <div class="premium-tool">
+          <h3>Enhanced ATS‑Friendly Resume</h3>
+          <textarea id="enhancedResumeText" rows="10" readonly></textarea>
+          <div class="download-buttons">
+            <button id="downloadResumeDocBtn" class="btn primary">Download DOCX</button>
+            <button id="downloadResumePdfBtn" class="btn primary">Download PDF</button>
+          </div>
+        </div>
+        <div class="premium-tool">
+          <h3>Cover Letter (if score &gt; 80%)</h3>
+          <textarea id="coverLetterText" rows="8" readonly></textarea>
+          <div class="download-buttons">
+            <button id="downloadCoverLetterDocBtn" class="btn primary">Download DOCX</button>
+            <button id="downloadCoverLetterPdfBtn" class="btn primary">Download PDF</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    © 2025 Resume Fit Analyzer
+  </footer>
+
+  <!-- External libraries for PDF and DOCX parsing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+  <script>
+    // Configure the workerSrc for pdf.js
+    if (window['pdfjsLib']) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.worker.min.js';
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.29/mammoth.browser.min.js"></script>
+
+  <!-- External libraries for generating DOCX and PDF (included once) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.4.0/docx.umd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script src="./app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js').catch(console.error);
+      });
+    }
+  </script>
+</body>
+</html>

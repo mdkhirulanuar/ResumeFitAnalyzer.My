@@ -1,0 +1,288 @@
+:root {
+  /* Vibrant colour palette inspired by modern landing page designs */
+  --primary: #6c5ce7;         /* vibrant purple */
+  --primary-light: #7d6ff2;   /* lighter purple for subtext */
+  --secondary: #fd79a8;       /* bright pink for call‑to‑action */
+  --accent: #00cec9;          /* turquoise accent for highlights */
+  --light-bg: #fafbff;        /* very light background */
+  --muted: #636e72;           /* muted grey for secondary text */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--light-bg);
+  color: var(--primary);
+}
+
+/* Navigation */
+.lp-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--primary);
+}
+
+.logo img {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+}
+
+.btn-nav {
+  background: var(--secondary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-nav:hover {
+  background: #15a589;
+  transform: translateY(-2px);
+}
+
+/* Hero section */
+.hero {
+  text-align: center;
+  padding: 4rem 1rem 3rem;
+  /* Use a vibrant gradient from purple to pink to turquoise */
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  color: #fff;
+}
+
+.hero h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 1.2rem;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn.primary {
+  background: var(--secondary);
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background: #15a589;
+  transform: translateY(-2px);
+}
+
+.btn.secondary {
+  background: #ecf0f1;
+  color: var(--primary);
+}
+
+.btn.secondary:hover {
+  background: #dde4ea;
+  transform: translateY(-2px);
+}
+
+/* Main content */
+.lp-main {
+  padding: 2rem 1rem;
+}
+
+.features h2,
+.testimonials h2,
+.pricing h2,
+.faq h2 {
+  text-align: center;
+  margin-bottom: 1.2rem;
+  font-size: 1.6rem;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.feature-item {
+  background: #fff;
+  padding: 1.3rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.feature-item h3 {
+  margin-top: 0;
+  margin-bottom: 0.6rem;
+  font-size: 1.2rem;
+}
+
+.feature-item p {
+  margin: 0;
+  color: var(--primary-light);
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+
+.testimonial {
+  background: #fff;
+  padding: 1.3rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+  font-style: italic;
+  position: relative;
+}
+
+.testimonial span {
+  display: block;
+  margin-top: 0.6rem;
+  font-weight: 600;
+  font-style: normal;
+  color: var(--primary);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.plan {
+  background: #fff;
+  padding: 1.6rem 1.3rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  position: relative;
+}
+
+.plan h3 {
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  font-size: 1.4rem;
+}
+
+.plan p {
+  margin: 0.5rem 0 1rem;
+  font-size: 1.1rem;
+  color: var(--primary);
+}
+
+.plan ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.2rem;
+  text-align: left;
+}
+
+.plan ul li {
+  margin-bottom: 0.4rem;
+  padding-left: 1.4rem;
+  position: relative;
+}
+
+.plan ul li::before {
+  content: "\2022";
+  color: var(--secondary);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.promo-note {
+  text-align: center;
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: 1rem;
+}
+
+.faq details {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+  margin-bottom: 0.8rem;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+}
+
+.faq summary {
+  font-weight: 600;
+  color: var(--primary);
+  outline: none;
+}
+
+.faq p {
+  margin: 0.5rem 0 0;
+  color: var(--primary-light);
+}
+
+.lp-footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  background: #f3f6fb;
+}
+
+/* Media queries for responsiveness */
+@media (min-width: 600px) {
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .testimonial-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .feature-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .testimonial-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .hero h1 {
+    font-size: 2.6rem;
+  }
+  .hero p {
+    font-size: 1.2rem;
+  }
+}
