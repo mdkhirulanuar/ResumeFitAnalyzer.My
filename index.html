@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Fit Analyzer</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#2c3e50" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-logo">R</div>
+      <div>
+        <h1>Resume Fit Analyzer</h1>
+        <p class="subtitle">Evidence-based evaluation of resume vs job description</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <section class="card">
+      <h2>1. Input Resume &amp; Job Description</h2>
+
+      <div class="form-group">
+        <label for="resumeFile">Upload Resume (.txt recommended)</label>
+        <input type="file" id="resumeFile" accept=".txt,.pdf,.doc,.docx" />
+        <p class="helper">
+          For best accuracy this version reads plain text. If your resume is PDF/DOCX,
+          open it and copy &amp; paste the text into the box below.
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="resumeText">Or paste resume text here</label>
+        <textarea id="resumeText" rows="8"
+          placeholder="Paste your full resume text here..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="jobDescription">Job Description from job posting</label>
+        <textarea id="jobDescription" rows="8"
+          placeholder="Paste the full job description here, including bullet points or responsibilities list..."></textarea>
+      </div>
+
+      <button id="analyzeBtn" class="btn primary">Analyze Alignment</button>
+      <p id="statusMessage" class="status-message"></p>
+    </section>
+
+    <section id="resultsSection" class="card hidden">
+      <h2>2. Itemized Gap Analysis (Strict Evidence-Based)</h2>
+
+      <div class="overall-summary">
+        <div class="overall-score">
+          <span id="overallScore">0%</span>
+          <small>Overall Alignment Score</small>
+        </div>
+        <div class="overall-text">
+          <p>
+            <strong>Candidate Classification:</strong>
+            <span id="overallClassification">–</span>
+          </p>
+          <p id="overallExplanation" class="muted"></p>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="gap-table">
+          <thead>
+            <tr>
+              <th>Job Responsibility / Requirement</th>
+              <th>Status</th>
+              <th>Match %</th>
+              <th>Strict Justification (Resume Evidence)</th>
+            </tr>
+          </thead>
+          <tbody id="gapTableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="summary-columns">
+        <div>
+          <h3>Key Strengths (Verified)</h3>
+          <p class="muted">Requirements where the candidate scored 100%.</p>
+          <ul id="strengthsList"></ul>
+        </div>
+        <div>
+          <h3>Critical Gaps (Verified)</h3>
+          <p class="muted">Requirements where the candidate scored 0–20%.</p>
+          <ul id="gapsList"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Premium tools section combining cover letter, summary, and bullet generators -->
+    <section id="premiumSection" class="card hidden">
+      <h2>3. Premium Tools</h2>
+      <p class="muted">
+        Unlock advanced tools such as cover letter generation, resume summary and optimized bullet suggestions.
+      </p>
+
+      <button id="startPremiumBtn" class="btn secondary">
+        Unlock Premium Tools
+      </button>
+
+      <!-- Payment prompt (simulated) -->
+      <div id="paymentSection" class="payment-section hidden">
+        <h3>Payment Confirmation</h3>
+        <p class="muted">
+          This demo simulates payment. In production you would integrate a real payment gateway.
+          Enter any reference number to continue.
+        </p>
+        <div class="form-inline">
+          <input type="text" id="receiptInput" placeholder="Example: TXN-123456" />
+          <button id="confirmPaymentBtn" class="btn primary">Confirm &amp; Unlock</button>
+        </div>
+        <p id="paymentMessage" class="status-message"></p>
+      </div>
+
+      <!-- Premium tools results -->
+      <div id="premiumTools" class="hidden">
+        <div class="premium-tool">
+          <h3>Cover Letter</h3>
+          <textarea id="coverLetterText" rows="8"></textarea>
+          <button id="downloadCoverLetterBtn" class="btn primary">
+            Download Cover Letter
+          </button>
+        </div>
+        <div class="premium-tool">
+          <h3>Resume Summary</h3>
+          <textarea id="resumeSummaryText" rows="6"></textarea>
+          <button id="downloadSummaryBtn" class="btn primary">Download Summary</button>
+        </div>
+        <div class="premium-tool">
+          <h3>Optimized Bullet Points</h3>
+          <textarea id="bulletPointsText" rows="8"></textarea>
+          <button id="downloadBulletsBtn" class="btn primary">Download Bullets</button>
+        </div>
+        <div class="premium-tool">
+          <h3>Resume Audit &amp; Suggestions</h3>
+          <textarea id="resumeAuditText" rows="8"></textarea>
+          <button id="downloadAuditBtn" class="btn primary">Download Audit</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Job tracker section -->
+    <section id="jobTrackerSection" class="card hidden">
+      <h2>4. Job Tracker</h2>
+      <p class="muted">Manage and track your job applications.</p>
+      <form id="jobForm" class="job-form">
+        <div class="form-group">
+          <label for="jobCompany">Company</label>
+          <input type="text" id="jobCompany" placeholder="Company name" />
+        </div>
+        <div class="form-group">
+          <label for="jobPosition">Position</label>
+          <input type="text" id="jobPosition" placeholder="Job title" />
+        </div>
+        <div class="form-group">
+          <label for="jobDate">Application Date</label>
+          <input type="date" id="jobDate" />
+        </div>
+        <div class="form-group">
+          <label for="jobStatus">Status</label>
+          <select id="jobStatus">
+            <option value="Applied">Applied</option>
+            <option value="Interviewing">Interviewing</option>
+            <option value="Offer">Offer</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="jobNotes">Notes</label>
+          <textarea id="jobNotes" rows="2" placeholder="Additional notes..."></textarea>
+        </div>
+        <button type="button" id="addJobBtn" class="btn primary">Add Job</button>
+      </form>
+      <div class="table-wrapper">
+        <table class="gap-table" id="jobTable">
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Position</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Notes</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    © 2025 Resume Fit Analyzer
+  </footer>
+
+  <script src="./app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js').catch(console.error);
+      });
+    }
+  </script>
+</body>
+</html>
